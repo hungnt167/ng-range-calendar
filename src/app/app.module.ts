@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { NgRangeCalendarModule } from './modules/ng-range-calendar/ng-range-calendar.module';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import {MatDatepickerModule, MatInputModule} from '@angular/material';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
 
 
 @NgModule({
@@ -10,9 +14,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgRangeCalendarModule,
   ],
-  providers: [],
+  providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  minDate = new Date();
+  dateChange(e) {
+    console.log(e);
+  }
 }

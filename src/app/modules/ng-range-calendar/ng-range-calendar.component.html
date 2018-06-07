@@ -1,0 +1,22 @@
+<input matInput
+       type="hidden"
+       placeholder="Choose a date"
+       [satDatepicker]="resultPicker"
+       (dateChange)="dateChange($event)"
+       [min]="min"
+       [max]="max"
+       #datePickerInput
+>
+<sat-datepicker
+        [beginDate]="beginDate"
+        [endDate]="endDate"
+        [startAt]="startAt"
+        [startView]="startView"
+        [touchUi]="touchUi"
+        [rangeMode]="true"
+        #resultPicker
+>
+</sat-datepicker>
+<sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
+
+<code>{{ datePickerInput.value }}</code>
