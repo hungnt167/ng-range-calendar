@@ -16,10 +16,7 @@
         [rangeMode]="true"
 >
 </sat-datepicker>
-<sat-datepicker-toggle matSuffix [for]="datePicker">
-    <p matDatepickerToggleIcon *ngIf="isTransparent"></p>
-</sat-datepicker-toggle>
-
+<sat-datepicker-toggle matSuffix [for]="datePicker" *ngIf="!isTransparent"></sat-datepicker-toggle>
 <code *ngIf="!isTransparent">
     {{ inputDatePicker.value }}
 </code>
