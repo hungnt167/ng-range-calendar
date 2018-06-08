@@ -11,6 +11,7 @@
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json"
   },
+  "keywords": ["angular", "calendar", "datepicker", "ng", "range datepicker", "range calendar"],
   "private": false,
   "dependencies": {
     "@angular/animations": "^5.2.4",

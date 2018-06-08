@@ -87,7 +87,6 @@ export class NgRangeCalendarComponent {
 
     /**
      * Change date event
-     * @param {SatDatepickerInputEvent} $event
      */
     dateChange($event) {
         this.beginDate = this.datePicker.beginDate;
