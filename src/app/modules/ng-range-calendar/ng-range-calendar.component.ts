@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {SatDatepickerInputEvent, SatDatepickerRangeValue} from '../datepicker/datepicker-input';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {SatDatepicker, SatDatepickerInputEvent, SatDatepickerRangeValue} from '../datepicker';
 
 export interface D extends Object {} //tslint:disable-line
 
@@ -9,10 +9,10 @@ export interface D extends Object {} //tslint:disable-line
     styleUrls: ['./ng-range-calendar.component.css']
 })
 export class NgRangeCalendarComponent {
-    /** Start of dates interval. */
+    @ViewChild(SatDatepicker) datePicker;
+    /** Beginning of date range. */
     @Input() beginDate: D | null;
-
-    /** End of dates interval. */
+    /** Date range end. */
     @Input() endDate: D | null;
 
     /** The date to open the calendar to initially. */
@@ -54,6 +54,8 @@ export class NgRangeCalendarComponent {
     @Input() panelClass: string | string[];
     /** Whether the calendar is open. */
     @Input() opened: boolean;
+    /** Whether the calendar is transparent. */
+    @Input() isTransparent: boolean;
 
     /**
      * =====================================================================================================================================
@@ -70,7 +72,26 @@ export class NgRangeCalendarComponent {
     @Output() readonly rangeChange: EventEmitter<SatDatepickerInputEvent<D>> =
         new EventEmitter<SatDatepickerInputEvent<D>>();
 
+    /**
+     *  Reset all
+     */
+    reset() {
+        this.beginDate = this.endDate =  this.startAt = null;
+    }
+    /**
+     *  Trigger open
+     */
+    open() {
+        this.datePicker.open();
+    }
+
+    /**
+     * Change date event
+     * @param {SatDatepickerInputEvent} $event
+     */
     dateChange($event) {
+        this.beginDate = this.datePicker.beginDate;
+        this.endDate = this.datePicker.endDate;
         this.rangeChange.emit($event);
     }
 

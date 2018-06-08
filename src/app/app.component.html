@@ -1,4 +1,9 @@
 <ng-range-calendar
         [min]="minDate"
         [touchUi]="true"
-        (rangeChange)="dateChange($event)"></ng-range-calendar>
+        [isTransparent]="false"
+        (rangeChange)="dateChange($event)"
+></ng-range-calendar>
+<button (click)="open()">Open</button>
+<button (click)="showSelected()">ShowSelected</button>
+<button (click)="reset()">Reset</button>

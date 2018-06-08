@@ -4,9 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgRangeCalendarModule } from './modules/ng-range-calendar/ng-range-calendar.module';
-import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {MatDatepickerModule, MatInputModule} from '@angular/material';
-import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'MM/YYYY',
+    },
+    display: {
+        dateInput: 'MM/YYYY',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+    },
+};
 
 
 @NgModule({
@@ -19,6 +29,7 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
   ],
   providers: [
       {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'},
+      {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
   bootstrap: [AppComponent]
 })

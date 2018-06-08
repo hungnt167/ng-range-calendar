@@ -20,8 +20,7 @@ import {
 } from '@angular/core';
 import {SatCalendarCell} from './calendar-body';
 import {createMissingDateImplError} from './datepicker-errors';
-import {MatDateFormats} from '../datetime';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 /**
  * An internal component used to display a single year in the datepicker.
  * @docs-private

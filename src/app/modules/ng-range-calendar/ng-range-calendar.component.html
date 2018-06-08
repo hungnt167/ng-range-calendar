@@ -1,11 +1,11 @@
 <input matInput
        type="hidden"
        placeholder="Choose a date"
-       [satDatepicker]="resultPicker"
+       [satDatepicker]="datePicker"
        (dateChange)="dateChange($event)"
        [min]="min"
        [max]="max"
-       #datePickerInput
+       #inputDatePicker
 >
 <sat-datepicker
         [beginDate]="beginDate"
@@ -14,9 +14,12 @@
         [startView]="startView"
         [touchUi]="touchUi"
         [rangeMode]="true"
-        #resultPicker
 >
 </sat-datepicker>
-<sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
+<sat-datepicker-toggle matSuffix [for]="datePicker">
+    <p matDatepickerToggleIcon *ngIf="isTransparent"></p>
+</sat-datepicker-toggle>
 
-<code>{{ datePickerInput.value }}</code>
+<code *ngIf="!isTransparent">
+    {{ inputDatePicker.value }}
+</code>

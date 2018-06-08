@@ -12,8 +12,6 @@ import {NgModule} from '@angular/core';
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 
-export * from './date-formats';
-
 @NgModule({
     imports: [PlatformModule,  MatMomentDateModule],
     providers: [

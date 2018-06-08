@@ -1,27 +1,94 @@
 # NgRangeCalendar
+NgRangeCalendar is a library based on [SaturnDatepicker](https://github.com/SaturnTeam/saturn-datepicker) and [Angular Material Datepicker](https://material.angular.io/components/component/datepicker)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+![ShortScreen](ng-range-calendar.png)
 
-## Development server
+## Dependence
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Your project must install 
 
-## Code scaffolding
+- [Angular Material](https://material.angular.io/guide/getting-started)
+- [Moment](http://momentjs.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+```bash
+npm i -S @angular/animations@^5.2.4 @angular/cdk@^5.2.4 @angular/material-moment-adapter@^6.2.1 moment
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Install
 
-## Running unit tests
+```bash
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm i ng-range-calendar -S
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Basic Usage
 
-## Further help
+```js
+import { NgRangeCalendarModule } from './modules/ng-range-calendar/ng-range-calendar.module';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+@NgModule({
+  imports: [
+    NgRangeCalendarModule,
+    
+    // ...
+  ],
+  
+  // ...
+})
+```
+
+## Localize
+
+Eg: Japanese Calendar
+
+```js
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+@NgModule({
+  providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'},
+  ],
+})
+```
+
+## Format
+
+We can define display format look like this:
+
+```js
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'MM/YYYY',
+    },
+    display: {
+        dateInput: 'MM/YYYY',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+    },
+};
+
+@NgModule({
+  providers: [
+      {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
+})
+```
+
+## Running the Sample
+
+```bash
+
+git clone https://github.com/hungnt167/ng-range-calendar
+cd ng-range-calendar
+npm i
+npm start
+
+
+```
+
+## Cheer :v

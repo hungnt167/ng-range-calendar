@@ -35,8 +35,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {MatDateFormats} from '../datetime';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 
 import {take} from 'rxjs/operators/take';
 import {Subscription} from 'rxjs/Subscription';

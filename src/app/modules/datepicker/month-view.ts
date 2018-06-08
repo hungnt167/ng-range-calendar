@@ -18,8 +18,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import {MatDateFormats} from '../datetime';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 
 import {SatCalendarCell} from './calendar-body';
 import {createMissingDateImplError} from './datepicker-errors';
