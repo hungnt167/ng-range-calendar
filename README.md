@@ -1,7 +1,7 @@
 # NgRangeCalendar
 NgRangeCalendar is a library based on [SaturnDatepicker](https://github.com/SaturnTeam/saturn-datepicker) and [Angular Material Datepicker](https://material.angular.io/components/component/datepicker)
 
-![ShortScreen](ng-range-calendar.png)
+![ShortScreen](https://raw.githubusercontent.com/hungnt167/ng-range-calendar/master/ng-range-calendar.png)
 
 ## Dependence
 

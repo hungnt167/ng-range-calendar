@@ -1,7 +1,13 @@
 {
   "name": "ng-range-calendar",
-  "version": "0.0.1",
+  "author": "Rooney",
+  "version": "0.0.3",
   "license": "MIT",
+  "description": "Angular 5x Range Calendar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hungnt167/ng-range-calendar"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +17,14 @@
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json"
   },
-  "keywords": ["angular", "calendar", "datepicker", "ng", "range datepicker", "range calendar"],
+  "keywords": [
+    "angular",
+    "calendar",
+    "datepicker",
+    "ng",
+    "range datepicker",
+    "range calendar"
+  ],
   "private": false,
   "dependencies": {
     "@angular/animations": "^5.2.4",
