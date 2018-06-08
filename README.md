@@ -1,4 +1,8 @@
 # NgRangeCalendar
+
+[![npm version](https://badge.fury.io/js/ng-range-calendar.svg)](https://badge.fury.io/js/ng-range-calendar)
+[![Build Status](https://travis-ci.org/hungnt167/ng-range-calendar.svg?branch=master)](https://travis-ci.org/hungnt167/ng-range-calendar)
+
 NgRangeCalendar is a library based on [SaturnDatepicker](https://github.com/SaturnTeam/saturn-datepicker) and [Angular Material Datepicker](https://material.angular.io/components/component/datepicker)
 
 ![ShortScreen](https://raw.githubusercontent.com/hungnt167/ng-range-calendar/master/ng-range-calendar.png)
