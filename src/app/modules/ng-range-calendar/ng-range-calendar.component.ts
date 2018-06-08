@@ -10,6 +10,11 @@ export interface D extends Object {} //tslint:disable-line
 })
 export class NgRangeCalendarComponent {
     @ViewChild(SatDatepicker) datePicker;
+    @ViewChild('inputDatePicker') inputDate;
+    /** Whenever datepicker is for selecting range of dates. */
+    @Input() rangeMode: boolean;
+    /** selected of date range. */
+    @Input() selected: D | null;
     /** Beginning of date range. */
     @Input() beginDate: D | null;
     /** Date range end. */
@@ -71,12 +76,19 @@ export class NgRangeCalendarComponent {
      */
     @Output() readonly rangeChange: EventEmitter<SatDatepickerInputEvent<D>> =
         new EventEmitter<SatDatepickerInputEvent<D>>();
-
+    /** get value */
+    public get value() {
+        return {
+            selected: this.selected,
+            beginDate: this.beginDate,
+            endDate: this.endDate
+        };
+    }
     /**
      *  Reset all
      */
     reset() {
-        this.beginDate = this.endDate =  this.startAt = null;
+        this.beginDate = this.endDate =  this.startAt = this.selected = null;
     }
     /**
      *  Trigger open
@@ -88,10 +100,11 @@ export class NgRangeCalendarComponent {
     /**
      * Change date event
      */
-    dateChange($event) {
+    dateChange(event: SatDatepickerInputEvent<D>) {
         this.beginDate = this.datePicker.beginDate;
         this.endDate = this.datePicker.endDate;
-        this.rangeChange.emit($event);
+        this.selected = event.value;
+        this.rangeChange.emit(event);
     }
 
 }

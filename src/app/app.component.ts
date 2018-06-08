@@ -15,6 +15,7 @@ export class AppComponent {
     console.log({
         'begin': e.value.begin,
         'end': e.value.end,
+        'selected': e.value,
     });
   }
 
@@ -27,9 +28,6 @@ export class AppComponent {
   }
 
   showSelected() {
-    console.log({
-        'begin': this.rangDate.beginDate,
-        'end': this.rangDate.endDate,
-    });
+    console.log(this.rangDate.value);
   }
 }
