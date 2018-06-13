@@ -1,10 +1,13 @@
 <ng-range-calendar
         [min]="minDate"
         [touchUi]="false"
-        [isTransparent]="false"
+        [isTransparent]="true"
         [rangeMode]="rangeMode"
         (rangeChange)="dateChange($event)"
 ></ng-range-calendar>
+<p>
+    {{rangDate.inputDate.nativeElement.value }}
+</p>
 <button (click)="open()">Open</button>
 <button (click)="showSelected()">ShowSelected</button>
 <button (click)="reset()">Reset</button>
