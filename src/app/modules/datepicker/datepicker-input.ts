@@ -164,7 +164,7 @@ export class SatDatepickerInput<D> implements AfterContentInit, ControlValueAcce
       value = this._dateAdapter.deserialize(value);
       this._lastValueValid = !value || this._dateAdapter.isValid(value);
       value = this._getValidDateOrNull(value);
-      let oldDate = this.value;
+      let oldDate = !this.value ? this.value : this.value.hasOwnProperty('begin') ? null : this.value;
       this._value = value;
       this._elementRef.nativeElement.value =
           value ? this._dateAdapter.format(value, this._dateFormats.display.dateInput) : '';

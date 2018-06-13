@@ -2,9 +2,10 @@
         [min]="minDate"
         [touchUi]="true"
         [isTransparent]="false"
-        [rangeMode]="false"
+        [rangeMode]="rangeMode"
         (rangeChange)="dateChange($event)"
 ></ng-range-calendar>
 <button (click)="open()">Open</button>
 <button (click)="showSelected()">ShowSelected</button>
 <button (click)="reset()">Reset</button>
+<p> rangeMode <input type="checkbox" [(ngModel)]="rangeMode"></p>

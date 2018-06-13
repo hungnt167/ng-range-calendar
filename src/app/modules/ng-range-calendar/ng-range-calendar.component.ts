@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild, AfterViewInit} from '@angular/core';
 import {SatDatepicker, SatDatepickerInputEvent, SatDatepickerRangeValue} from '../datepicker';
 
 export interface D extends Object {} //tslint:disable-line
@@ -8,11 +8,21 @@ export interface D extends Object {} //tslint:disable-line
     templateUrl: './ng-range-calendar.component.html',
     styleUrls: ['./ng-range-calendar.component.css']
 })
-export class NgRangeCalendarComponent {
+export class NgRangeCalendarComponent implements AfterViewInit{
     @ViewChild(SatDatepicker) datePicker;
     @ViewChild('inputDatePicker') inputDate;
     /** Whenever datepicker is for selecting range of dates. */
-    @Input() rangeMode: boolean;
+    @Input()
+    get rangeMode(): boolean {
+        return this._rangeMode;
+    }
+    set rangeMode(mode: boolean) {
+        this._rangeMode = mode;
+        if (!this.rangeMode) {
+            this.beginDate = this.endDate =  this.startAt = null;
+        }
+    }
+    private _rangeMode;
     /** selected of date range. */
     @Input() selected: D | null;
     /** Beginning of date range. */
@@ -107,4 +117,22 @@ export class NgRangeCalendarComponent {
         this.rangeChange.emit(event);
     }
 
+
+    ngAfterViewInit(): void {
+        this.datePicker.openedStream.subscribe(() => {
+            /** from range to single  */
+            if (!this.rangeMode && this.selected && this.selected.hasOwnProperty('begin')) {
+                setTimeout(() => {
+                    this.datePicker._dialogRef.componentInstance._calendar.monthView.selectedChange.emit(this.selected['begin']);
+                }, 100);
+            }
+            /** from single to range   */
+            if (this.rangeMode && this.selected && !this.selected.hasOwnProperty('begin')) {
+                setTimeout(() => {
+                    this.datePicker._dialogRef.componentInstance._calendar.monthView.selectedChange.emit(this.selected);
+                    this.datePicker._dialogRef.componentInstance._calendar.monthView.beginDateSelected = true;
+                }, 100);
+            }
+        });
+    }
 }

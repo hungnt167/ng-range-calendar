@@ -9,6 +9,7 @@ import * as moment from 'moment';
 })
 export class AppComponent {
   @ViewChild(NgRangeCalendarComponent) rangDate;
+  rangeMode = true;
   minDate = moment();
   nextDate = moment().day(7);
   dateChange(e) {
