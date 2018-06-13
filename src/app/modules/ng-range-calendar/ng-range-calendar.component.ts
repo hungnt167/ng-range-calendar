@@ -1,27 +1,31 @@
 import {Component, EventEmitter, Input, Output, ViewChild, AfterViewInit} from '@angular/core';
 import {SatDatepicker, SatDatepickerInputEvent, SatDatepickerRangeValue} from '../datepicker';
 
-export interface D extends Object {} //tslint:disable-line
+export interface D extends Object {
+} //tslint:disable-line
 
 @Component({
     selector: 'ng-range-calendar',
     templateUrl: './ng-range-calendar.component.html',
     styleUrls: ['./ng-range-calendar.component.css']
 })
-export class NgRangeCalendarComponent implements AfterViewInit{
+export class NgRangeCalendarComponent implements AfterViewInit {
     @ViewChild(SatDatepicker) datePicker;
     @ViewChild('inputDatePicker') inputDate;
+
     /** Whenever datepicker is for selecting range of dates. */
     @Input()
     get rangeMode(): boolean {
         return this._rangeMode;
     }
+
     set rangeMode(mode: boolean) {
         this._rangeMode = mode;
         if (!this.rangeMode) {
-            this.beginDate = this.endDate =  this.startAt = null;
+            this.beginDate = this.endDate = this.startAt = null;
         }
     }
+
     private _rangeMode;
     /** selected of date range. */
     @Input() selected: D | null;
@@ -50,8 +54,8 @@ export class NgRangeCalendarComponent implements AfterViewInit{
      * @deprecated Switch to the `dateChange` and `dateInput` binding on the input element.
      * @deletion-target 6.0.0
      */
-    @Output() readonly selectedChanged: EventEmitter<D|SatDatepickerRangeValue<D>> =
-        new EventEmitter<D|SatDatepickerRangeValue<D>>();
+    @Output() readonly selectedChanged: EventEmitter<D | SatDatepickerRangeValue<D>> =
+        new EventEmitter<D | SatDatepickerRangeValue<D>>();
 
     /**
      * Emits selected year in multiyear view.
@@ -86,6 +90,7 @@ export class NgRangeCalendarComponent implements AfterViewInit{
      */
     @Output() readonly rangeChange: EventEmitter<SatDatepickerInputEvent<D>> =
         new EventEmitter<SatDatepickerInputEvent<D>>();
+
     /** get value */
     public get value() {
         return {
@@ -94,12 +99,14 @@ export class NgRangeCalendarComponent implements AfterViewInit{
             endDate: this.endDate
         };
     }
+
     /**
      *  Reset all
      */
     reset() {
-        this.beginDate = this.endDate =  this.startAt = this.selected = null;
+        this.beginDate = this.endDate = this.startAt = this.selected = null;
     }
+
     /**
      *  Trigger open
      */
@@ -117,20 +124,27 @@ export class NgRangeCalendarComponent implements AfterViewInit{
         this.rangeChange.emit(event);
     }
 
+    private getCalendar() {
+        return  this.touchUi
+            ? this.datePicker._dialogRef.componentInstance._calendar.monthView
+            : this.datePicker.popupComponentRef.instance._calendar.monthView;
+    }
 
     ngAfterViewInit(): void {
         this.datePicker.openedStream.subscribe(() => {
-            /** from range to single  */
-            if (!this.rangeMode && this.selected && this.selected.hasOwnProperty('begin')) {
+            if (!this.selected) {
+                return;
+            }
+            if (!this.rangeMode && this.selected.hasOwnProperty('begin')) {
                 setTimeout(() => {
-                    this.datePicker._dialogRef.componentInstance._calendar.monthView.selectedChange.emit(this.selected['begin']);
+                    this.getCalendar().selectedChange.emit(this.selected['begin']);
                 }, 100);
             }
-            /** from single to range   */
-            if (this.rangeMode && this.selected && !this.selected.hasOwnProperty('begin')) {
+            if (this.rangeMode && !this.selected.hasOwnProperty('begin')) {
                 setTimeout(() => {
-                    this.datePicker._dialogRef.componentInstance._calendar.monthView.selectedChange.emit(this.selected);
-                    this.datePicker._dialogRef.componentInstance._calendar.monthView.beginDateSelected = true;
+                    const calendar = this.getCalendar();
+                    calendar.selectedChange.emit(this.selected);
+                    calendar.beginDateSelected = true;
                 }, 100);
             }
         });

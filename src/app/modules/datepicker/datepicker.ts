@@ -250,10 +250,13 @@ export class SatDatepicker<D> implements OnDestroy {
   get _dateFilter(): (date: D | null) => boolean {
     return this._datepickerInput && this._datepickerInput._dateFilter;
   }
-
+    /** A reference to the component when the calendar is opened as a popup. */
+  get popupComponentRef(): ComponentRef<SatDatepickerContent<any>> {
+      return this._popupComponentRef;
+  }
+  private _popupComponentRef: ComponentRef<SatDatepickerContent<any>>;
   /** A reference to the overlay when the calendar is opened as a popup. */
   private _popupRef: OverlayRef;
-
   /** A reference to the dialog when the calendar is opened as a dialog. */
   private _dialogRef: MatDialogRef<any> | null;
 
@@ -436,6 +439,7 @@ export class SatDatepicker<D> implements OnDestroy {
       let componentRef: ComponentRef<SatDatepickerContent<any>> =
           this._popupRef.attach(this._calendarPortal);
       componentRef.instance.datepicker = this;
+      this._popupComponentRef = componentRef;
 
       // Update the position once the calendar has rendered.
       this._ngZone.onStable.asObservable().pipe(take(1)).subscribe(() => {
